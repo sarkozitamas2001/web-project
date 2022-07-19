@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Foglalas</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='index.css'>
+  <script src='index.js'></script>
+</head>
+
+<body onload="loggedIn('<%= locals.role %>')">
+
+  <header class="Header">
+    <nav calss="navigation">
+        <div class="div1">
+            <ul class="list1">
+                <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+                <li class="nav-item" id="feltoltes-id"><a class="nav-link" href="palyafeltoltes.html">Palya Feltoltes</a></li>
+                <li class="nav-item" id="foglalas-id"><a class="nav-link" href="/foglalas">Foglalas</a></li>
+                <li class="nav-item" id="login-id" style="float:right"><a class="nav-link" href="login.html">Bejelentkezes</a>
+                </li>
+                <li class="nav-item" id="logout-id" style="float:right">
+                    <form action="/logout/logout" method="post" id="logoutForm"><a class="nav-link" href="#"
+                            onclick="document.getElementById('logoutForm').submit();">Kijelentkezes</a></form>
+                </li>
+                <li class="nav-item" id="name-id" style="float:right"><a class="nav-link" href="/modositas">
+                        <%= locals.uname %>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+  <div>Egy foglalas csak egy orara ervenyes!</div>
+  <form action="/berel/berel" method="post" name="form3" onchange="submitFoglalasAvalibe()">
+
+    <select class="palyavalaszto" name="palyaID" id="palyavalaszto" data-style="btn-info">
+      <optgroup label="Valassz Palyat">
+        <option value="">Palyak:</option>
+        <% palyak.forEach(function(palya){ %>
+          <option value="<%= palya.palyaID %>">
+            <%= palya.palyaTipus %>
+          </option>
+          <% }) %>
+      </optgroup>
+    </select>
+
+    <br>
+    <br>
+
+    <label>Idopont:</label> <br>
+    <input type="datetime-local" name="idopont" id="ido"> <br> <br>
+    <input type="submit" id="submitFoglalas" disabled>
+    <br>
+    <br>
+  </form>
+
+  <ol class="list-item-reservations" id="foglalasok"></ol>
+  <small id="foglalasListaHiba"></small>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Modositas</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='index.css'>
+  <script src='index.js'></script>
+</head>
+
+<body onload="loggedIn('<%= locals.role %>')">
+
+  <header class="Header">
+    <nav calss="navigation">
+        <div class="div1">
+            <ul class="list1">
+                <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+                <li class="nav-item" id="feltoltes-id"><a class="nav-link" href="palyafeltoltes.html">Palya Feltoltes</a></li>
+                <li class="nav-item" id="foglalas-id"><a class="nav-link" href="/foglalas">Foglalas</a></li>
+                <li class="nav-item" id="login-id" style="float:right"><a class="nav-link" href="login.html">Bejelentkezes</a>
+                </li>
+                <li class="nav-item" id="logout-id" style="float:right">
+                    <form action="/logout/logout" method="post" id="logoutForm"><a class="nav-link" href="#"
+                            onclick="document.getElementById('logoutForm').submit();">Kijelentkezes</a></form>
+                </li>
+                <li class="nav-item" id="name-id" style="float:right"><a class="nav-link" href="/modositas">
+                        <%= locals.uname %>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<form action="/modosit/modosit" method="post" name="modosit-form">
+    <label>Nev: </label> <br>
+    <input type="text" name="nevModosit"> <br>
+    <label>E-mail: </label> <br>
+    <input type="text" name="emailModosit"> <br>
+    <label>Felhasznalonev: </label> <br>
+    <input type="text" name="unameModosit"> <br>
+    <label>Jelszo: </label> <br>
+    <input type="password" name="jelszoModosit"> <br> <br>
+    <input type="submit">
+</form>
+<small id="modosit-hiba"><%=message%></small>
+
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Home</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='index.css'>
+    <script src='index.js'></script>
+</head>
+
+<body onload="loggedIn('<%= locals.role %>')">
+
+    <header class="Header">
+        <nav calss="navigation">
+            <div class="div1">
+                <ul class="list1">
+                    <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+                    <li class="nav-item" id="feltoltes-id"><a class="nav-link" href="palyafeltoltes.html">Palya Feltoltes</a></li>
+                    <li class="nav-item" id="foglalas-id"><a class="nav-link" href="/foglalas">Foglalas</a></li>
+                    <li class="nav-item" id="login-id" style="float:right"><a class="nav-link" href="login.html">Bejelentkezes</a>
+                    </li>
+                    <li class="nav-item" id="logout-id" style="float:right">
+                        <form action="/logout/logout" method="post" id="logoutForm"><a class="nav-link" href="#"
+                                onclick="document.getElementById('logoutForm').submit();">Kijelentkezes</a></form>
+                    </li>
+                    <li class="nav-item" id="name-id" style="float:right"><a class="nav-link" href="/modositas">
+                            <%= locals.uname %>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <br>
+
+    <div class="class-container">
+        <% palyak.forEach((palya)=> { %>
+            <div class="list-item" id="<%=palya.palyaID%>">
+                <div class="list-item-name"> <a href="/palyak/<%= palya.palyaID %>">
+                        <%= palya.palyaTipus %>
+                    </a></div>
+                <div class="list-item-price" onclick="displayList('<%=palya.palyaID%>', '<%= locals.role %>')">Oraberar: <%= palya.oraBerar %>
+                </div>
+                <div class="list-item-address" onclick="displayList('<%=palya.palyaID%>', '<%= locals.role %>')">Cim: <%= palya.cim %>
+                </div>
+                <div class="list-item-desciption" onclick="displayList('<%=palya.palyaID%>', '<%= locals.role %>')">Leiras: <%= palya.leiras
+                        %>
+                </div>
+                <ol class="list-item-reservations" id="reservations-<%=palya.palyaID%>"></ol>
+                <small id="reservationsMessage"></small>
+            </div>
+            <hr>
+            <% }) %>
+    </div>
+
+</body>
+
+</html>

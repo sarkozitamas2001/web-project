@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Palya Feltoltes</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='index.css'>
+  <script src='index.js'></script>
+</head>
+
+<body>
+  <header class="Header">
+    <nav calss="navigation">
+      <div class="div1">
+        <ul class="list1">
+          <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="palyafeltoltes.html">Palya Feltoltes</a></li>
+          <li class="nav-item"><a class="nav-link" href="/foglalas">Foglalas</a></li>
+          <li class="nav-item" style="float:right">
+            <form action="/logout/logout" method="post" id="logoutForm"><a class="nav-link" href="#"
+                onclick="document.getElementById('logoutForm').submit();">Kijelentkezes</a></form>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <form action="/feldolgoz/feldolgoz" name="form1" id="form1ID" method="post" onchange="submitUjPalyaAvalibe()">
+    <label>Palya tipusa:</label> <br>
+    <input type="text" name="palyaTipus" id="palyatipus"> <br>
+    <div>
+      <label>Oraberar:</label> <br>
+      <input type="number" name="oraBer" id="arID" onblur="validateOraberar()"> <br>
+      <small id="ar" hidden>Az ar 0-nal nagyobb szam kell legyen!</small>
+    </div>
+    <label>Cim:</label> <br>
+    <input type="text" name="cim" id="cim"> <br>
+    <label>Leiras:</label> <br>
+    <input type="text" name="leiras" id="leiras"> <br> <br>
+    <input type="submit" name="submit" id="submitUjPalya" disabled>
+  </form>
+
+</body>
+
+</html>

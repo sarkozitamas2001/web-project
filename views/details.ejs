@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Palya Informaciok - <%= palya.palyaTipus %>
+  </title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='../index.css'>
+  <script src='../index.js'></script>
+</head>
+
+<body onload="detailsOnload('<%= locals.role %>')">
+
+  <header class="Header">
+    <nav calss="navigation">
+        <div class="div1">
+            <ul class="list1">
+                <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+                <li class="nav-item" id="feltoltes-id"><a class="nav-link" href="../palyafeltoltes.html">Palya Feltoltes</a></li>
+                <li class="nav-item" id="foglalas-id"><a class="nav-link" href="/foglalas">Foglalas</a></li>
+                <li class="nav-item" id="login-id" style="float:right"><a class="nav-link" href="../login.html">Bejelentkezes</a>
+                </li>
+                <li class="nav-item" id="logout-id" style="float:right">
+                    <form action="/logout/logout" method="post" id="logoutForm"><a class="nav-link" href="#"
+                            onclick="document.getElementById('logoutForm').submit();">Kijelentkezes</a></form>
+                </li>
+                <li class="nav-item" id="name-id" style="float:right"><a class="nav-link" href="/modositas">
+                        <%= locals.uname %>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+  <h2>
+    <%= palya.palyaTipus %>
+  </h2>
+
+  <div class="list-item" id="<%=palya.palyaID%>">
+    <div class="list-item-price">Oraberar: <%= palya.oraBerar %>
+    </div>
+    <div class="list-item-address">Cim: <%= palya.cim %>
+    </div>
+    <div class="list-item-desciption">Leiras: <%= palya.leiras %>
+    </div>
+  </div>
+
+  <div class="slideshow-container">
+    <% kepek.forEach((kep)=> { %>
+      <div class="slide fade" id="<%=kep.kepID%>">
+        <img src="../uploadDir/<%=kep.Nev%>" alt="sad" width="500" height="300">
+      </div>
+      <% }) %>
+  </div>
+
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+  <hr>
+
+  <form action="/feltolt/<%=palya.palyaID%>/feltolt/<%=palya.palyaID%>" method="post" name="form2" enctype="multipart/form-data" id="kepfeltoltes-id"
+    onchange="submitImageAvalibe()">
+    <h3>Tolts fel egy kepet a palyarol</h3>
+    <div>
+      <label>Kep:</label> <br>
+      <input type="file" name="imageUpload" id="kep" onblur="validateIMG()"> <br>
+      <small id="kephiba" hidden>Az adott file png, jpg vagy jpeg formatumban kell legyen</small>
+    </div>
+    <br>
+    <input type="submit" id="submitImage" disabled>
+
+  </form>
+
+</body>
+
+</html>
